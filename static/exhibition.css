@@ -1,0 +1,165 @@
+/* ----------------- Customizing Carousel Effects ----------------- */
+
+.more-to-explore-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.explore-carousel-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
+}
+
+.explore-carousel-container::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar for Chrome/Safari */
+}
+
+.explore-carousel-track {
+    display: flex;
+    gap: 25px;
+    padding: 0 10px;
+}
+
+.carousel-item {
+    margin-right: 0px !important;
+    display: block !important;
+    flex: 0 0 calc(50% - 15px);
+    scroll-snap-align: start;
+}
+
+@media (min-width: 576px) {
+    .carousel-item {
+        flex: 0 0 calc(33.333% - 15px);
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel-item {
+        flex: 0 0 calc(25% - 15px);
+    }
+}
+
+.btn-carousel-prev,
+.btn-carousel-next {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.btn-carousel-prev {
+    left: 20px;
+}
+
+.btn-carousel-next {
+    right: 20px;
+}
+
+.btn-carousel-prev:hover,
+.btn-carousel-next:hover {
+    background-color: #e9ecef;
+}
+
+/* Hide dots navigation since we're using arrows */
+.carousel-nav {
+    display: none;
+}
+
+/* xxxxxxxxxxxxxxxxx Customizing Carousel effects xxxxxxxxxxxxxxxxx */
+
+
+/* ----------------- Customizing Exhibition Navbar ----------------- */
+
+.exhi-nav {
+    padding-left: 0px !important;
+    padding-right: 30px;
+}
+
+.exhibition-navbar {
+    padding: 1.5rem 0;
+    background-color: #e4e4e4 !important;
+    height: auto;
+}
+
+.exhibition-menu-heading {
+    color: #212529;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem !important;
+}
+
+.exhibition-nav-link {
+    position: relative;
+    padding: 0.5rem 0;
+    margin: 0 1rem;
+    color: #212529 !important;
+    text-decoration: none;
+}
+
+.exhibition-nav-link:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #212529;
+}
+
+.exhibition-nav-link:hover,
+.exhibition-nav-link.active {
+    color: #000;
+    /* Same as normal state or different if you prefer */
+}
+
+/* Underline effect */
+.exhibition-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    /* Thickness of the underline */
+    background-color: #000;
+    /* Color of the underline */
+    transition: width 0.3s ease;
+}
+
+.exhibition-nav-link:hover::after,
+.exhibition-nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile adjustments */
+@media (max-width: 992px) {
+    .exhibition-menu-heading {
+        font-size: 1.5rem;
+    }
+
+    .navbar-nav {
+        padding-top: 1rem;
+    }
+
+    .nav-item {
+        padding-bottom: 0.5rem;
+    }
+}
+
+/* xxxxxxxxxxxxxxxxx Customizing Exhibition Navbar xxxxxxxxxxxxxxxxx */

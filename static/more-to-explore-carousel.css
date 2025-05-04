@@ -1,0 +1,81 @@
+.more-to-explore-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.explore-carousel-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+}
+
+.explore-carousel-track {
+    display: flex;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.carousel-item {
+    margin-right: 0px !important;
+    display: block !important;
+}
+
+.carousel-item {
+    flex: 0 0 calc(50% - 15px);
+    scroll-snap-align: start;
+}
+
+@media (min-width: 576px) {
+    .carousel-item {
+        flex: 0 0 calc(33.333% - 15px);
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel-item {
+        flex: 0 0 calc(25% - 15px);
+    }
+}
+
+.explore-carousel-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-carousel-prev,
+.btn-carousel-next {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-carousel-prev:hover,
+.btn-carousel-next:hover {
+    background-color: #e9ecef;
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

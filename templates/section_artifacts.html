@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Artifacts</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/adminDashboard.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Include Sidebar -->
+            {% include 'sidebar.html' %}
+
+            <!-- Main Content -->
+            <div class="col-lg-10 main-content">
+                <!--  Admin Header -->
+                {% include 'adminHeader.html' %}
+
+                <div class="table-container">
+                    <h5 class="table-title">Add New Artifact</h5>
+
+                    <form action="/section_artifacts" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="item_name" class="form-label">Item Name</label>
+                                <input type="text" class="form-control" id="item_name" name="item_name" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option value="" selected disabled>
+                                        Select category
+                                    </option>
+                                    <option value="Indian Art">Indian Art</option>
+                                    <option value="Arms and Armor">Arms and Armor</option>
+                                    <option value="Asian Art">Asian Art</option>
+                                    <option value="Egyptian Art">Egyptian Art</option>
+                                    <option value="European Art">European Art</option>
+                                    <option value="Islamic Art">Islamic Art</option>
+                                    <option value="Ancient American Art">Ancient American Art</option>
+                                    <option value="Ancient Near Eastern Art">Ancient Near Eastern Art</option>
+                                    <option value="Medieval Art and The Cloisters">Medieval Art and The Cloisters
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="origin" class="form-label">Origin</label>
+                                <input type="text" class="form-control" id="origin" name="origin" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="historical_period" class="form-label">Historical Period</label>
+                                <input type="text" class="form-control" id="historical_period" name="historical_period"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location" name="location"
+                                    placeholder="Gallery/Room Number" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="image_filename" class="form-label">Image Filename</label>
+                                <input type="text" class="form-control" id="image_filename" name="image_filename"
+                                    placeholder="image_filename.png" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="category_desc" class="form-label">Category Description</label>
+                            <textarea class="form-control" id="category_desc" name="category_desc" rows="2"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                        </div>
+
+                        <div class="text-start mt-4">
+                            <button type="reset" class="btn btn-secondary me-2">
+                                <i class="fas fa-eraser me-1"></i> Clear Form
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-container mt-4">
+                    <h5 class="table-title">Current Artifacts</h5>
+                    <div style="overflow-x: auto; width: 100%;">
+                        <table class="table table-hover" style="min-width: 800px;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item Id</th>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Origin</th>
+                                    <th scope="col">Historical Period</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                {% for artifact in artifacts %}
+                                <tr>
+                                    <th scope="row">{{ artifact[0] }}</th>
+                                    <td>{{ artifact[1] }}</td>
+                                    <td>{{ artifact[2] }}</td>
+                                    <td>{{ artifact[3] }}</td> <!-- Origin -->
+                                    <td>{{ artifact[4] }}</td> <!-- Historical Period -->
+                                    <td>{{ artifact[5] }}</td> <!-- Location -->
+                                    <td>
+                                        <a href="/edit_artifact/{{ artifact[0] }}" class="btn btn-sm btn-warning me-2">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <form action="/delete_artifact/{{ artifact[0] }}" method="POST"
+                                            style="display: inline;">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-sm btn-danger my-2"
+                                                onclick="return confirm('Are you sure?')">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+.card-body a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    /* Required for absolute positioning of ::after */
+    display: inline-block;
+    /* Ensures the underline doesn't stretch full width */
+}
+
+.card-body a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+.card-body a:hover::after {
+    width: 100%;
+    /* Expands the underline to full width */
+}
+
+.btn-museum {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.btn-museum::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.btn-museum:hover {
+    color: white;
+}
+
+.btn-museum:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-museum .bi-compass {
+    transition: transform 0.3s ease;
+}
+
+.btn-museum:hover .bi-compass {
+    transform: rotate(360deg);
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card-img-top {
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: scale(1.09);
+}

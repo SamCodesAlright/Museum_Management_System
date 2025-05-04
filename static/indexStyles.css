@@ -1,0 +1,242 @@
+/* ----------------- Exhibition and Events Carousel Styles ----------------- */
+
+:root {
+    --met-red: #d2372a;
+    --met-dark: #333333;
+    --met-light: #f8f8f8;
+}
+
+.now-on-view {
+    padding: 40px 0;
+    background-color: white;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 5px;
+}
+
+.section-title {
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--met-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.view-all {
+    color: var(--met-red);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    padding: 0 15px;
+}
+
+.carousel-slide {
+    margin-right: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.carousel-slide a {
+    color: black;
+    text-decoration: none;
+}
+
+.carousel-slide:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-image {
+    width: 600px;
+    height: 338px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.carousel-img-frst {
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.img-caption {
+    font-family: 'Helvetica', Arial, sans-serif;
+    color: #fff
+}
+
+.img-caption h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--met-dark);
+}
+
+.img-caption p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 15px 0;
+}
+
+.carousel-dots {
+    display: flex;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+    background-color: var(--met-red);
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+}
+
+.carousel-arrow.prev {
+    left: 10px;
+}
+
+.carousel-arrow.next {
+    right: 10px;
+}
+
+.carousel-arrow:hover {
+    background-color: var(--met-light);
+}
+
+@media (max-width: 992px) {
+    .carousel-slide {
+        min-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-slide {
+        min-width: calc(100% - 10px);
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+}
+
+
+/* ----------------- Location and Hours Styles ----------------- */
+
+.location-card img {
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+
+.card {
+    border: none !important;
+    transition: box-shadow 0.3s ease-in-out;
+    /* Adds smooth transition */
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.card-body {
+    height: 35vh;
+    background-color: #efeded;
+}
+
+.card-body a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    /* Required for absolute positioning of ::after */
+    display: inline-block;
+    /* Ensures the underline doesn't stretch full width */
+}
+
+.card-body a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease;
+}
+
+.card-body a:hover::after {
+    width: 100%;
+    /* Expands the underline to full width */
+}
+
+/* Bounce animation (optional) */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.card-body a:hover {
+    animation: bounce 0.5s ease;
+}
+
+
+/* ----------------- More To Explore Styles ----------------- */
+
+.more-to-explore-imgs {
+    width: 280px;
+    height: 365px;
+}

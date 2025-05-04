@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-container">
+        <h1 class="mb-4">Login To Your Admin Account</h1>
+        <p class="mb-4">
+          Enter your email address and password below to login to your admin
+          account.
+        </p>
+
+        <!-- General Error Message -->
+        {% if errors and errors.login %}
+        <div class="alert alert-danger" role="alert">{{ errors.login }}</div>
+        {% endif %}
+
+        <div class="row">
+          <div class="col-md-7">
+            <h2 class="fs-4 mb-3">Login Information</h2>
+
+            <form method="POST" action="/adminLogin">
+              <!-- CSRF Token -->
+              <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+              />
+
+              <div class="mb-3">
+                <label for="email" class="form-label"> Email address </label>
+                <input
+                  type="email"
+                  class="form-control myInputStyle {% if errors and errors.email %}is-invalid{% endif %}"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email address"
+                  required
+                />
+                {% if errors and errors.email %}
+                <div class="text-danger">{{ errors.email }}</div>
+                {% endif %}
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label"> Password </label>
+                <input
+                  type="password"
+                  class="form-control myInputStyle {% if errors and errors.password %}is-invalid{% endif %}"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                />
+                {% if errors and errors.password %}
+                <div class="text-danger">{{ errors.password }}</div>
+                {% endif %}
+              </div>
+
+              <div class="mb-3">
+                <a href="#" class="text-decoration-none">Forgot password</a>
+              </div>
+
+              <button type="submit" class="btn btn-dark w-100 loginBtn">
+                Login
+              </button>
+            </form>
+          </div>
+
+          <div class="col-md-5">
+            <h2 class="fs-4 mb-3">Not Created an Admin Account Yet?</h2>
+            <p>Click below to create an admin account.</p>
+            <a href="/adminRegister" class="btn btn-dark w-100 loginBtn"
+              >Create Account</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

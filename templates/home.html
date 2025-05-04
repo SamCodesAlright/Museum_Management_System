@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Management System - Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        :root {
+            --primary: #34495e;
+            --secondary: #2c3e50;
+            --accent: #e67e22;
+            --light: #f5f5f5;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --info: #3498db;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            min-height: 100vh;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            z-index: 1000;
+        }
+
+        .sidebar-collapsed {
+            margin-left: -250px;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 12px 20px;
+            margin: 4px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            padding: 20px;
+            transition: all 0.3s;
+            margin-left: 250px;
+        }
+
+        .main-content-expanded {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .welcome-section {
+            background: url('/api/placeholder/1200/400') center/cover;
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(44, 62, 80, 0.9) 0%, rgba(44, 62, 80, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .dashboard-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .card-exhibitions {
+            background-color: var(--info);
+        }
+
+        .card-artifacts {
+            background-color: var(--success);
+        }
+
+        .card-visitors {
+            background-color: var(--warning);
+        }
+
+        .card-events {
+            background-color: var(--danger);
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .count {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .table-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-title {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+        }
+
+        .status-upcoming {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--info);
+        }
+
+        .status-completed {
+            background-color: rgba(44, 62, 80, 0.1);
+            color: var(--dark);
+        }
+
+        .user-dropdown {
+            cursor: pointer;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding-left: 40px;
+            border-radius: 20px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        #sidebarToggle {
+            display: none;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1050;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .loading-indicator {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .highlight-row {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bell-icon {
+            position: relative;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                margin-left: -250px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            #sidebarToggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Indicator -->
+    <div class="loading-indicator" id="loadingIndicator">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button id="sidebarToggle" class="d-flex d-lg-none">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <a href="#" class="sidebar-brand">
+                        <i class="fas fa-landmark me-2"></i>ArtMuseum
+                    </a>
+                </div>
+                <div class="py-2">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#exhibitions" class="nav-link" data-section="exhibitions">
+                                <i class="fas fa-palette"></i> Exhibitions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#artifacts" class="nav-link" data-section="artifacts">
+                                <i class="fas fa-brush"></i> Artifacts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#visitors" class="nav-link" data-section="visitors">
+                                <i class="fas fa-users"></i> Visitors
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#events" class="nav-link" data-section="events">
+                                <i class="fas fa-calendar-alt"></i> Events
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#tickets" class="nav-link" data-section="tickets">
+                                <i class="fas fa-ticket-alt"></i> Tickets
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#staff" class="nav-link" data-section="staff">
+                                <i class="fas fa-user-friends"></i> Staff
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" class="nav-link" data-section="settings">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </li>
+                        <li class="nav-item mt-4">
+                            <a href="#" class="nav-link text-danger" id="logoutLink">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content" id="mainContent">
+                <!-- Header -->
+                <div class="header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0">Dashboard</h4>
+                        <p class="text-muted mb-0" id="welcomeMsg">Welcome back, Admin</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="search-box me-3">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+                        </div>
+                        <div class="bell-icon me-3">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </div>
+                        <div class="dropdown">
+                            <div class="user-dropdown d-flex align-items-center" data-bs-toggle="dropdown">
+                                <img src="/api/placeholder/40/40" class="rounded-circle me-2" alt="Admin">
+                                <span id="username">Admin <i class="fas fa-chevron-down ms-2 small"></i></span>
+                            </div>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-danger" href="#" id="logoutDropdown"><i
+                                            class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Section -->
+                <div id="dashboardSection">
+                    <!-- Welcome Banner -->
+                    <div class="welcome-section">
+                        <div class="welcome-content">
+                            <h2>Welcome to Museum Management System</h2>
+                            <p class="lead">Manage your exhibitions, artifacts, events, and visitors all in one place.
+                            </p>
+                            <button class="btn btn-light mt-2" id="newExhibitionBtn"><i class="fas fa-plus me-2"></i>
+                                Create New Exhibition</button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="dashboard-card">
+                                <div class="card-icon card-exhibitions">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h5 class="card-title">Exhibitions</h5>
+                                <div class="count" id="exhibitionCount">12</div>
+                                <p class="text-muted" id="exhibitionStatus">3 active, 2 upcoming</p>
+                                <a href="#exhibitions" class="btn btn-sm btn-outline-primary mt-2 section-link"
+                                    data-section="exhibitions">View All</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card">
+                                <div class="card-icon card-artifacts">
+                                    <i class="fas fa-brush"></i>
+                                </div>
+                                <h5 class="card-title">Artifacts</h5>
+                                <div class="count" id="artifactCount">347</div>
+                                <p class="text-muted" id="artifactStatus">24 added this month</p>
+                                <a href="#artifacts" class="btn btn-sm btn-outline-success mt-2 section-link"
+                                    data-section="artifacts">View All</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card">
+                                <div class="card-icon card-visitors">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h5 class="card-title">Visitors</h5>
+                                <div class="count" id="visitorCount">8,459</div>
+                                <p class="text-muted" id="visitorStatus">+12% from last month</p>
+                                <a href="#visitors" class="btn btn-sm btn-outline-warning mt-2 section-link"
+                                    data-section="visitors">View All</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="dashboard-card">
+                                <div class="card-icon card-events">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <h5 class="card-title">Events</h5>
+                                <div class="count" id="eventCount">28</div>
+                                <p class="text-muted" id="eventStatus">5 scheduled this week</p>
+                                <a href="#events" class="btn btn-sm btn-outline-danger mt-2 section-link"
+                                    data-section="events">View All</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Exhibitions -->
+                    <div class="table-container mt-4">
+                        <h4 class="table-title">Recent Exhibitions</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="exhibitionsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Exhibition Name</th>
+                                        <th>Gallery</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="/api/placeholder/50/50" class="rounded me-3" alt="">
+                                                <div>
+                                                    <span class="fw-bold">Impressionist Masters</span>
+                                                    <p class="text-muted mb-0 small">Curator: James Wilson</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>East Wing</td>
+                                        <td>Apr 01, 2025</td>
+                                        <td>Jul 15, 2025</td>
+                                        <td><span class="status-badge status-active">Active</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-outline-secondary edit-btn" data-id="1"><i
+                                                        class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-info view-btn" data-id="1"><i
+                                                        class="fas fa-eye"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="/api/placeholder/50/50" class="rounded me-3" alt="">
+                                                <div>
+                                                    <span class="fw-bold">Modern Sculptures</span>
+                                                    <p class="text-muted mb-0 small">Curator: Emily Chen</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Main Hall</td>
+                                        <td>Mar 15, 2025</td>
+                                        <td>Jun 30, 2025</td>
+                                        <td><span class="status-badge status-active">Active</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-outline-secondary edit-btn" data-id="2"><i
+                                                        class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-info view-btn" data-id="2"><i
+                                                        class="fas fa-eye"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="/api/placeholder/50/50" class="rounded me-3" alt="">
+                                                <div>
+                                                    <span class="fw-bold">Renaissance Treasures</span>
+                                                    <p class="text-muted mb-0 small">Curator: John Smith</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>West Wing</td>
+                                        <td>May 10, 2025</td>
+                                        <td>Aug 20, 2025</td>
+                                        <td><span class="status-badge status-upcoming">Upcoming</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-outline-secondary edit-btn" data-id="3"><i
+                                                        class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-info view-btn" data-id="3"><i
+                                                        class="fas fa-eye"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="/api/placeholder/50/50" class="rounded me-3" alt="">
+                                                <div>
+                                                    <span class="fw-bold">Ancient Egypt</span>
+                                                    <p class="text-muted mb-0 small">Curator: Sarah Johnson</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Special Exhibition Hall</td>
+                                        <td>Jan 15, 2025</td>
+                                        <td>Mar 30, 2025</td>
+                                        <td><span class="status-badge status-completed">Completed</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-outline-secondary edit-btn" data-id="4"><i
+                                                        class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-info view-btn" data-id="4"><i
+                                                        class="fas fa-eye"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-end mt-3">
+                            <a href="#exhibitions" class="btn btn-outline-primary section-link"
+                                data-section="exhibitions">View All Exhibitions</a>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Events and Visitors -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="table-container h-100">
+                                <h4 class="table-title">Upcoming Events</h4>
+                                <ul class="list-group list-group-flush" id="eventsList">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <h6 class="mb-0">Art Workshop for Children</h6>
+                                            <p class="text-muted mb-0 small">Apr 8, 2025 - 10:00 AM</p>
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">24 Registrations</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <h6 class="mb-0">Curator's Tour: Impressionist Masters</h6>
+                                            <p class="text-muted mb-0 small">Apr 12, 2025 - 2:00 PM</p>
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">18 Registrations</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <h6 class="mb-0">Evening Gala: Museum Fundraiser</h6>
+                                            <p class="text-muted mb-0 small">Apr 15, 2025 - 7:00 PM</p>
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">45 Registrations</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <div>
+                                            <h6 class="mb-0">Lecture Series: Art History</h6>
+                                            <p class="text-muted mb-0 small">Apr 20, 2025 - 4:00 PM</p>
+                                        </div>
+                                        <span class="badge bg-primary rounded-pill">32 Registrations</span>
+                                    </li>
+                                </ul>
+                                <div class="text-end mt-3">
+                                    <a href="#events" class="btn btn-outline-primary section-link"
+                                        data-section="events">View All Events</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="table-container h-100">
+                                <h4 class="table-title">Recent Visitors</h4>
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <h5 class="mb-0">Daily Visitors</h5>
+                                    <select class="form-select form-select-sm" id="timeRangeSelect"
+                                        style="width: auto;">
+                                        <option value="7">Last 7 days</option>
+                                        <option value="30">Last 30 days</option>
+                                        <option value="90">Last 90 days</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <canvas id="visitorChart" height="250"></canvas>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <span class="d-block">Regular Visitors</span>
+                                            <h5 id="regularVisitors">5,842</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <span class="d-block">Member Visits</span>
+                                            <h5 id="memberVisits">2,617</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder for other sections -->
+                <div id="exhibitionsSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">All Exhibitions</h3>
+                        <p>This section would contain all exhibitions with advanced filtering and management options.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="artifactsSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">Artifacts Management</h3>
+                        <p>This section would contain all artifacts with cataloging and management features.</p>
+                    </div>
+                </div>
+
+                <div id="visitorsSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">Visitor Analytics</h3>
+                        <p>This section would contain detailed visitor analytics and reporting tools.</p>
+                    </div>
+                </div>
+
+                <div id="eventsSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">Events Calendar</h3>
+                        <p>This section would contain an events calendar and planning tools.</p>
+                    </div>
+                </div>
+
+                <div id="ticketsSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">Ticket Management</h3>
+                        <p>This section would contain ticket sales, pricing, and reporting.</p>
+                    </div>
+                </div>
+
+                <div id="staffSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">Staff Directory</h3>
+                        <p>This section would contain staff management and scheduling tools.</p>
+                    </div>
+                </div>
+
+                <div id="settingsSection" style="display: none;">
+                    <div class="table-container">
+                        <h3 class="table-title">System Settings</h3>
+                        <p>This section would contain system configuration and preferences

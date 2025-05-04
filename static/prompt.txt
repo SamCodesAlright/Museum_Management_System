@@ -1,0 +1,22 @@
+This is my columns for the table exhibitions
+
+                """
+                CREATE TABLE IF NOT EXISTS exhibitions (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    exhibit_name TEXT NOT NULL,
+                    location TEXT NOT NULL,
+                    category TEXT NOT NULL,
+                    image_filename TEXT NOT NULL,
+                    start_date TEXT NOT NULL,
+                    end_date TEXT NOT NULL,
+                    opening_time TEXT NOT NULL,
+                    closing_time TEXT NOT NULL,
+                    description TEXT
+                )
+                """,
+
+I want you to create dummy information for all the columns given here. Create an sql query as well, as I want to insert them in the exhibitions table. The exhibit_name should be  Caspar David Friedrich: The Soul of Nature, Monstrous Beauty: A Feminist Revision of Chinoiserie, Recasting The Past: The Art of Chinese Bronzes, 1100-1900, Layered Narratives: The Northern Renaissance Gallery, Cycladic Art, Art of Commerce: Trade Catalogs in Watson Library, Colorful Korea: The Lea R. Sneider Collection, Floridas: Anastasia Samoylova and Walker Evans, "The Three Perfections: Japanese Poetry, Calligraphy, and Painting from the Mary and Cheney Cowles Collection" Afterlives: Contemporary Art in the Byzantine Crypt, Embracing Color: Enamel in Chinese Decorative Arts, 1300–1900, Before Yesterday We Could Fly: An Afrofuturist Period Room, Art of Native America: The Charles and Valerie Diker Collection, The New Art: American Photography, 1839–1910, City and Country: Selections from the Department of Drawings and Prints, Arts of the Ancient Americas, Arts of Africa, The Magical City: George Morrison’s New York.
+
+The category should be constant for all and it would be "Exhibition". The image_filename should be for those coulmns or exhibit_name rows are CasparDavidFriedrich, monstrous_beauty, RecastingthePast, layered_narratives, CycladicArt, art_of_commerce, colorful_korea, floridas, the_three_perfections, afterlives, embracing_color, before_yesterday_we_could_fly, art_of_native_america, the_new_art, city_and_country, arts_of_the_ancient_americans, arts_of_africa, the_magical_city
+
+Also make sure that the description should be 2000 characters long. As I have to display them in very structured manner on a webpage.

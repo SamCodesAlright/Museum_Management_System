@@ -1,0 +1,113 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.page-header {
+    background-color: #212529;
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.section-title {
+    color: #212529;
+    border-bottom: 1px solid #adb5bd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.info-card {
+    background-color: white;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid #6c757d;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.info-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.timing-table {
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.timing-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.museum-image {
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    border: 1px solid #e9ecef;
+}
+
+.museum-image img {
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: auto;
+}
+
+.museum-image:hover img {
+    transform: scale(1.02);
+}
+
+.ticket-price {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0;
+    border: 1px solid #e9ecef;
+}
+
+.ticket-price h5 {
+    color: #495057;
+    font-weight: 600;
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.accessibility-icon {
+    font-size: 1.75rem;
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+.guideline-icon {
+    margin-right: 0.75rem;
+    color: #6c757d;
+}
+
+.alert-custom {
+    background-color: #f8f9fa;
+    border-left: 3px solid #6c757d;
+    border-radius: 0;
+}

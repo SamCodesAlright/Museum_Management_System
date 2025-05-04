@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | Museum Management</title>
+    <!-- CSRF Token Meta Tag (Important for AJAX requests) -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/adminDashboard.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <!-- ... (keep your existing sidebar code) ... -->
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0">User Profile</h4>
+                        <p class="text-muted mb-0">Manage and view user details</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="search-box me-3">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                        <div class="dropdown user-dropdown">
+                            <div class="d-flex align-items-center" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                <img src="{{ user.profile_image or '/api/placeholder/40/40' }}"
+                                    class="rounded-circle me-2" alt="Profile">
+                                <span>{{ current_user.first_name or 'User' }}</span>
+                                <i class="fas fa-chevron-down ms-2"></i>
+                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="/profile"><i class="fas fa-user me-2"></i>
+                                        Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <form action="/logout" method="POST">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile Content -->
+                <div class="row mt-4">
+                    <!-- User Info Card -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="dashboard-card">
+                            <div class="text-center mb-4">
+                                <img src="{{ user.profile_image or '/api/placeholder/150/150' }}"
+                                    class="rounded-circle mb-3" alt="User Avatar">
+                                <h4 class="card-title mb-0">
+                                    {{ user.first_name }} {{ user.last_name }}
+                                </h4>
+                                <p class="text-muted">User ID: {{ user.id }}</p>
+                                <p class="text-muted">Role: {{ user.role|capitalize }}</p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-primary me-2" data-bs-toggle="modal"
+                                    data-bs-target="#editProfileModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <a href="#" class="btn btn-secondary">
+                                    <i class="fas fa-envelope"></i> Message
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Details Card -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="dashboard-card">
+                            <h5 class="card-title border-bottom pb-3 mb-3">
+                                <i class="fas fa-user-circle me-2"></i> Personal Information
+                            </h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <p class="text-muted mb-1">First Name</p>
+                                    <p class="fw-bold">{{ user.first_name }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-muted mb-1">Last Name</p>
+                                    <p class="fw-bold">{{ user.last_name }}</p>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <p class="text-muted mb-1">Email Address</p>
+                                    <p class="fw-bold">{{ user.email }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-muted mb-1">Phone Number</p>
+                                    <p class="fw-bold">{{ user.phone or 'Not provided' }}</p>
+                                </div>
+                            </div>
+                            <h5 class="card-title border-bottom pb-3 mb-3 mt-4">
+                                <i class="fas fa-map-marker-alt me-2"></i> Address Information
+                            </h5>
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <p class="text-muted mb-1">Address</p>
+                                    <p class="fw-bold">
+                                        {{ user.address }}<br>
+                                        {{ user.city }}, {{ user.state }} {{ user.zip_code }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Activity Card -->
+                    <div class="col-12 mb-4">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-history me-2"></i> Account Activity
+                                </h5>
+                                <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Activity</th>
+                                            <th>IP Address</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for activity in user_activities %}
+                                        <tr>
+                                            <td>{{ activity.timestamp.strftime('%b %d, %Y') }}</td>
+                                            <td>{{ activity.activity_type }}</td>
+                                            <td>{{ activity.ip_address }}</td>
+                                            <td><span class="status-badge status-{{ activity.status }}">{{
+                                                    activity.status|capitalize }}</span></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal (with CSRF protection) -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/profile/update" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form fields would go here -->
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="first_name"
+                                value="{{ user.first_name }}">
+                        </div>
+                        <!-- Add other fields as needed -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for AJAX CSRF Protection -->
+    <script>
+        // Set up CSRF token for AJAX requests
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+        // Example AJAX request
+        function fetchUserData() {
+            fetch('/api/user/{{ user.id }}', {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Initialize any page-specific JavaScript here
+        document.addEventListener('DOMContentLoaded', function () {
+            // Your initialization code
+        });
+    </script>
+</body>
+
+</html>

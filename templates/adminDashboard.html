@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museum Management System - Admin Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/static/adminDashboard.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Include Sidebar -->
+      {% include 'sidebar.html' %}
+
+      <!-- Main Content -->
+      <div class="col-lg-10 main-content">
+        <!--  Admin Header -->
+        {% include 'adminHeader.html' %}
+
+        <!-- Welcome Banner -->
+        <div class="welcome-section">
+          <div class="welcome-content">
+            <h2>Welcome to Museum Management System</h2>
+            <p class="lead">Manage your exhibitions, artifacts, events, and users all in one place.</p>
+            <a href="/section_exhibition" class="btn btn-light mt-2"><i class="fas fa-plus me-2"></i> Create New
+              Exhibition</a>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row">
+          <!-- Exhibitions Card -->
+          <div class="col-md-3">
+            <div class="dashboard-card">
+              <div class="card-icon card-exhibitions">
+                <i class="fas fa-palette"></i>
+              </div>
+              <h5 class="card-title">Exhibitions</h5>
+              <div class="count">{{ data.counts.exhibitions }}</div>
+              <p class="text-muted">Currently active</p>
+              <a href="/section_exhibition" class="btn btn-sm btn-outline-primary mt-2">View All</a>
+            </div>
+          </div>
+
+          <!-- Artifacts Card -->
+          <div class="col-md-3">
+            <div class="dashboard-card">
+              <div class="card-icon card-artifacts">
+                <i class="fas fa-brush"></i>
+              </div>
+              <h5 class="card-title">Artifacts</h5>
+              <div class="count">{{ data.counts.artifacts }}</div>
+              <p class="text-muted">In collection</p>
+              <a href="section_artifacts" class="btn btn-sm btn-outline-success mt-2">View All</a>
+            </div>
+          </div>
+
+          <!-- Events Card -->
+          <div class="col-md-3">
+            <div class="dashboard-card">
+              <div class="card-icon card-events">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <h5 class="card-title">Events</h5>
+              <div class="count">{{ data.counts.events }}</div>
+              <p class="text-muted">Upcoming</p>
+              <a href="/section_exhibition" class="btn btn-sm btn-outline-danger mt-2">View All</a>
+            </div>
+          </div>
+
+          <!-- Users Card -->
+          <div class="col-md-3">
+            <div class="dashboard-card">
+              <div class="card-icon card-visitors">
+                <i class="fas fa-users"></i>
+              </div>
+              <h5 class="card-title">Users</h5>
+              <div class="count">{{ data.counts.users }}</div>
+              <p class="text-muted">Registered</p>
+              <a href="#" class="btn btn-sm btn-outline-warning mt-2">View All</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Exhibitions Section -->
+        <div class="table-container mt-4">
+          <h4 class="table-title">Recent Exhibitions</h4>
+          {% if data.recent_exhibitions %}
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Location</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for exhibition in data.recent_exhibitions %}
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div>
+                        <span class="fw-bold">{{ exhibition.exhibit_name }}</span>
+                        <p class="text-muted mb-0 small">{{ exhibition.description|truncate(50) }}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ exhibition.location }}</td>
+                  <td>{{ exhibition.start_date }}</td>
+                  <td>{{ exhibition.end_date }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <div class="alert alert-info">No exhibitions found</div>
+          {% endif %}
+          <div class="text-end mt-3">
+            <a href="/section_exhibition" class="btn btn-primary">View All Exhibitions</a>
+          </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="mt-4 p-3 text-center text-muted">
+          <p class="mb-0">© 2025 Museum Management System. All rights reserved by Sam & Co.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/sidebars.js"></script>
+</body>
+
+</html>

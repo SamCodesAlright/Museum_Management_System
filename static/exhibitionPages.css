@@ -1,0 +1,144 @@
+body {
+    font-family: 'Nunito Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+}
+
+/* Typography for exhibition description */
+.exhibition-description {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #424242;
+}
+
+.exhibition-description p {
+    margin-bottom: 1.5rem;
+}
+
+/* Hero section */
+.hero-image {
+    height: 500px !important;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image img {
+    object-position: center !important;
+}
+
+/* Main content area */
+.main-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Exhibition title */
+.exhibition-title {
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 1rem;
+}
+
+/* Exhibition details card */
+.exhibition-details {
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    padding: 1.8rem;
+    border-left: 4px solid #6c757d;
+}
+
+.exhibition-details h4 {
+    color: #343a40;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.exhibition-details li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.exhibition-details li:last-child {
+    border-bottom: none;
+}
+
+.exhibition-details i {
+    color: #495057;
+}
+
+/* Related exhibitions section */
+.related-exhibitions {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.related-exhibitions h4 {
+    color: #343a40;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.related-link {
+    transition: all 0.2s ease;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+.related-link:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+/* Exhibition navbar */
+.exhibition-navbar {
+    background-color: #343a40;
+    padding: 0.8rem 0;
+}
+
+.exhibition-navbar .nav-link {
+    color: black !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.exhibition-navbar .nav-link:hover {
+    background-color: #495057;
+    color: white !important;
+}
+
+.exhibition-navbar .nav-link.active {
+    background-color: #6c757d;
+    color: white !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-image {
+        height: 400px !important;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .main-content {
+        margin-top: -1.5rem;
+        padding: 1.5rem;
+    }
+}

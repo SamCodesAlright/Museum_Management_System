@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exhibitions</title>
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/indexStyles.css" />
+    <link rel="stylesheet" href="/static/exhibition.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <section class="position-relative">
+        <div class="hero-image position-relative" style="height: 500px;">
+            <img src="/static/images/exhibition/exhibition_hero.jpg" alt="Exhibition"
+                class="w-100 h-100 object-fit-cover opacity-85">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        </div>
+        <div class="container position-absolute top-50 start-50 translate-middle w-100">
+            <div class="hero-caption text-center p-4 text-white mx-auto" style="max-width: 800px;">
+                <h1 class="display-4 fw-bold">Exhibitions</h1>
+                <p class="lead mb-4 fw-bold">Our Museum exhibitions are curated displays of art, artifacts, or themes
+                    that offer a window into history, culture, and creativity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="now-on-view mt-5">
+        <div class="section-header">
+            <h2 class="section-title" style="margin-left: 85px;">Current Exhibitions</h2>
+            <a href="#" class="view-all mx-5">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="more-to-explore-carousel">
+            <button class="btn-carousel-prev carousel-arrow prev">❮</button>
+            <div class="explore-carousel-container carousel-container">
+                <div class="explore-carousel-track carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item carousel-slide" style="margin-left: 75px;">
+                        <a href="/caspar_david_friedrich">
+                            <img src="/static/images/exhibition/caspar_david_friedrich.jpg" alt="Caspar David Friedrich"
+                                class="carousel-img-frst">
+                            <div class="img-caption">
+                                <h3>Caspar David Friedrich: The Soul of Nature</h3>
+                                <p>Through October 15, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/cycladic_art">
+                            <img src="/static/images/exhibition/cycladic_art.jpg" alt="Cycladic Art"
+                                class="carousel-img-frst">
+                            <div class="img-caption">
+                                <h3>Cycladic Art</h3>
+                                <p>Ongoing</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/layered_narratives">
+                            <img src="/static/images/exhibition/layered_narratives.jpg" alt="Layered Narratives"
+                                class="carousel-img-frst">
+                            <div class="img-caption">
+                                <h3>Layered Narratives: The Northern Renaissance Gallery</h3>
+                                <p>Ongoing</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/art_of_commerce">
+                            <img src="/static/images/exhibition/art_of_commerce.jpg" alt="Art of Commerce"
+                                class="carousel-img-frst">
+                            <div class="img-caption">
+                                <h3>Art of Commerce: Trade Catalogs in Watson Library</h3>
+                                <p>Through April 22</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-carousel-next carousel-arrow next">❯</button>
+        </div>
+    </section>
+
+
+    <!-- Recently Opened Section -->
+    <section class="now-on-view">
+        <div class="section-header">
+            <h2 class="section-title" style="margin-left: 85px;">Recently Opened</h2>
+            <a href="#" class="view-all mx-5">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="more-to-explore-carousel">
+            <button class="btn-carousel-prev carousel-arrow prev">❮</button>
+            <div class="explore-carousel-container carousel-container">
+                <div class="explore-carousel-track carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item carousel-slide" style="margin-left: 75px;">
+                        <a href="/recasting_the_past">
+                            <img src="/static/images/exhibition/recasting_the_past.jpg" alt="Recasting The Past"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Recasting The Past: The Art of Chinese Bronzes, 1100-1900</h3>
+                                <p>Through December 10, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item carousel-slide">
+                        <a href="/colorful_korea">
+                            <img src="/static/images/exhibition/colorful_korea.jpg" alt="Colorful Korea"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Colorful Korea: The Lea R. Sneider Collection</h3>
+                                <p>Through February 15, 2026</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/before_yesterday_we_could_fly">
+                            <img src="/static/images/exhibition/before_yesterday_we_could_fly.jpg" alt="Exhibition"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Before Yesterday We Could Fly: An Afrofuturist Period Room</h3>
+                                <p>Through November 10, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/monstrous_beauty">
+                            <img src="/static/images/exhibition/monstrous_beauty.jpg" alt="Monstrous Beauty"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Monstrous Beauty: A Feminist Revision of Chinoiserie</h3>
+                                <p>Through October 15, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <button class="btn-carousel-next carousel-arrow next">❯</button>
+        </div>
+    </section>
+
+    <!-- Closing Soon Section -->
+    <section class="now-on-view">
+        <div class="section-header">
+            <h2 class="section-title" style="margin-left: 85px;">Closing Soon</h2>
+            <a href="#" class="view-all mx-5">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="more-to-explore-carousel">
+            <button class="btn-carousel-prev carousel-arrow prev">❮</button>
+            <div class="explore-carousel-container carousel-container">
+                <div class="explore-carousel-track carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item carousel-slide" style="margin-left: 75px;">
+                        <a href="/art_of_native_america">
+                            <img src="/static/images/exhibition/art_of_native_america.jpg" alt="Art of Native America"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Art of Native America: The Charles and Valerie Diker Collection</h3>
+                                <p>Through December 10, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item carousel-slide">
+                        <a href="/embracing_color">
+                            <img src="/static/images/exhibition/embracing_color.jpg" alt="Exhibition"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Embracing Color: Enamel in Chinese Decorative Arts, 1300–1900</h3>
+                                <p>Through December 4, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/afterlives">
+                            <img src="/static/images/exhibition/afterlives.jpg" alt="Afterlives" class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Afterlives: Contemporary Art in the Byzantine Crypt</h3>
+                                <p>Through September 10, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="carousel-item carousel-slide">
+                        <a href="/floridas">
+                            <img src="/static/images/exhibition/floridas.jpg" alt="Floridas" class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Floridas: Anastasia Samoylova and Walker Evans</h3>
+                                <p>Through May 11</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-carousel-next carousel-arrow next">❯</button>
+        </div>
+    </section>
+
+    <!-- Upcoming Exhibitions Section -->
+    <section class="now-on-view">
+        <div class="section-header">
+            <h2 class="section-title" style="margin-left: 85px;">Upcoming Exhibitions</h2>
+            <a href="#" class="view-all mx-5">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="more-to-explore-carousel">
+            <button class="btn-carousel-prev carousel-arrow prev">❮</button>
+            <div class="explore-carousel-container carousel-container">
+                <div class="explore-carousel-track carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item carousel-slide" style="margin-left: 75px;">
+                        <a href="/the_new_art">
+                            <img src="/static/images/exhibition/the_new_art.jpg" alt="The New Art: American Photography"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>The New Art: American Photography, 1839–1910</h3>
+                                <p>April 11–July 20, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item carousel-slide">
+                        <a href="/city_and_country">
+                            <img src="/static/images/exhibition/city_and_country.png" alt="City and Country"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>City and Country: Selections from the Department of Drawings and Prints</h3>
+                                <p>May 15–September 2, 2025</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item carousel-slide">
+                        <a href="/arts_of_the_ancient_americans">
+                            <img src="/static/images/exhibition/arts_of_the_ancient_americans.jpg"
+                                alt="Arts of the Ancient Americas" class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Arts of the Ancient Americas</h3>
+                                <p>September 29 - Ongoing</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="carousel-item carousel-slide">
+                        <a href="/arts_of_africa">
+                            <img src="/static/images/exhibition/arts_of_africa.jpg" alt="Arts of Africa"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>Arts of Africa</h3>
+                                <p>September 29 - Ongoing</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="carousel-item carousel-slide">
+                        <a href="/the_magical_city">
+                            <img src="/static/images/exhibition/the_magical_city.jpg" alt="The Magical City"
+                                class="carousel-image">
+                            <div class="img-caption">
+                                <h3>The Magical City: George Morrison’s New York</h3>
+                                <p>July 17, 2025–July 31, 2026</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <button class="btn-carousel-next carousel-arrow next">❯</button>
+        </div>
+    </section>
+
+    <!-- Include Footer -->
+    {% include 'footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/imgCarousel.js"></script>
+    <script src="/static/exhibition.js"></script>
+</body>
+
+</html>

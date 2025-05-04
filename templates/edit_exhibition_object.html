@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Exhibition Object</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/adminDashboard.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Include Sidebar -->
+            {% include 'sidebar.html' %}
+
+            <!-- Main Content -->
+            <div class="col-lg-10 main-content">
+                <!-- Admin Header -->
+                {% include 'adminHeader.html' %}
+
+                <div class="table-container">
+                    <h5 class="table-title">Update Exhibition Object</h5>
+
+                    <form action="/update_exhibition_object/{{ object[0] }}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="title" class="form-label">
+                                    Title
+                                </label>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ object[1] }}"
+                                    required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="creator" class="form-label">
+                                    Creator
+                                </label>
+                                <input type="text" class="form-control" id="creator" name="creator"
+                                    value="{{ object[2] }}" required />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="culture" class="form-label">
+                                    Culture
+                                </label>
+                                <input type="text" class="form-control" id="culture" name="culture"
+                                    value="{{ object[3] }}" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="date" class="form-label">
+                                    Date
+                                </label>
+                                <input type="text" class="form-control" id="date" name="date" value="{{ object[4] }}"
+                                    required />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="medium" class="form-label">
+                                    Medium
+                                </label>
+                                <input type="text" class="form-control" id="medium" name="medium"
+                                    value="{{ object[5] }}" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="dimensions" class="form-label">
+                                    Dimensions
+                                </label>
+                                <input type="text" class="form-control" id="dimensions" name="dimensions"
+                                    value="{{ object[6] }}" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="credit" class="form-label">
+                                    Credit Line
+                                </label>
+                                <input type="text" class="form-control" id="credit" name="credit"
+                                    value="{{ object[7] }}" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="image_filename" class="form-label">
+                                    Image Name
+                                </label>
+                                <input type="text" class="form-control" id="image_filename" name="image_filename"
+                                    value="{{ object[9] }}" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">
+                                Description
+                            </label>
+                            <textarea class="form-control" id="description" name="description"
+                                rows="5">{{ object[8] }}</textarea>
+                        </div>
+
+                        <div class="text-start mt-4">
+                            <a href="{{ url_for('section_exhibition_objects') }}" class="btn btn-secondary me-2">
+                                <i class="fas fa-times me-1"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Update Object
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

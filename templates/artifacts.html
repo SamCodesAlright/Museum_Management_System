@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Museum Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/artifacts.css">
+</head>
+
+<body>
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <section>
+        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-image-container position-relative" style="height: 500px; overflow: hidden;">
+                        <img src="/static/images/artifacts/hero_img1.jpg" alt="Museum Exhibition"
+                            class="w-100 h-100 object-fit-cover" style="object-position: center center;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100"
+                            style="background: rgba(0, 0, 0, 0.3);"></div>
+                    </div>
+                    <div class="container">
+                        <div class="carousel-caption text-start text-white">
+                            <h1>Discover Our World-Class Collections</h1>
+                            <p class="opacity-75 fs-5">Journey through 5,000 years of human
+                                history and culture.</p>
+                            <p>
+                                <a class="btn btn-museum text-white" href="/exhibition">
+                                    <i class="bi bi-compass me-2"></i> Explore Now
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-image-container position-relative" style="height: 500px; overflow: hidden;">
+                        <img src="/static/images/artifacts/hero_img2.jpg" alt="Museum Events"
+                            class="w-100 h-100 object-fit-cover" style="object-position: center center;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100"
+                            style="background: rgba(0, 0, 0, 0.3);"></div>
+                    </div>
+                    <div class="container">
+                        <div class="carousel-caption text-white">
+                            <h1>Upcoming Events</h1>
+                            <p class="opacity-75 fs-5">Check out our special exhibitions and cultural events happening
+                                this month.
+                            </p>
+                            <p>
+                                <a class="btn btn-museum text-white" href="/events">
+                                    <i class="bi bi-calendar-event me-2"></i> View Events
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-image-container position-relative" style="height: 500px; overflow: hidden;">
+                        <img src="/static/images/artifacts/hero_img3.jpg" alt="Plan Your Visit"
+                            class="w-100 h-100 object-fit-cover" style="object-position: center center;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100"
+                            style="background: rgba(0, 0, 0, 0.3);"></div>
+                    </div>
+                    <div class="container">
+                        <div class="carousel-caption text-white text-end">
+                            <h1>Plan Your Visit</h1>
+                            <p class="opacity-75 fs-5">Get tickets and information to make the most of your museum
+                                experience.</p>
+                            <p><a class="btn btn-museum text-white" href="/visit">
+                                    <i class="bi bi-ticket-perforated"></i> Buy Tickets
+                                </a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="my-5">
+                <h2 class="section-title">Our Collection</h2>
+                <p class="fs-5">Travel around the world and across 5,000 years of history through 490,000+ works of art.
+                </p>
+            </div>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('indian_art') }}"> <img src="/static/images/artifacts/indian_art.jpg"
+                                    alt="Ancient American Art" class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('indian_art') }}" class="mb-2">
+                                <h4 class="card-title">Indian Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('arms_and_armor') }}"> <img
+                                    src="/static/images/artifacts/arms_and_armor.jpg" alt="Arms and Armor"
+                                    class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('arms_and_armor') }}" class="mb-2">
+                                <h4 class="card-title">Arms and Armor</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('asian_art') }}"> <img src="/static/images/artifacts/asian_art.jpg"
+                                    alt="Asian Art" class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('asian_art') }}" class="mb-2">
+                                <h4 class="card-title">Japanese Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('egyptian_art') }}"> <img
+                                    src="/static/images/artifacts/egyptian_art.jpg" alt="Egyptian Art"
+                                    class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('egyptian_art') }}" class="mb-2">
+                                <h4 class="card-title">Egyptian Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('european_art') }}"> <img
+                                    src="/static/images/artifacts/european_art.jpg" alt="European Art"
+                                    class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('european_art') }}" class="mb-2">
+                                <h4 class="card-title">European Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('islamic_art') }}"> <img src="/static/images/artifacts/islamic_art.jpg"
+                                    alt="Islamic Art" class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('islamic_art') }}" class="mb-2">
+                                <h4 class="card-title">Islamic Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('ancient_american_art') }}"> <img
+                                    src="/static/images/artifacts/ancient_american_art.jpg" alt="Ancient American Art"
+                                    class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('ancient_american_art') }}" class="mb-2">
+                                <h4 class="card-title">Ancient American Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('ancient_near_eastern_art') }}"> <img
+                                    src="/static/images/artifacts/ancient_near_eastern_art.jpg"
+                                    alt="Ancient Near Eastern Art" class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('ancient_near_eastern_art') }}" class="mb-2">
+                                <h4 class="card-title">Ancient Near Eastern Art</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mb-5">
+                    <div class="card shadow-sm h-90">
+                        <div class="card-img-top overflow-hidden" style="height: 225px;">
+                            <a href="{{ url_for('medieval_art_and_the_cloisters') }}"> <img
+                                    src="/static/images/artifacts/medieval_art_and_the_cloisters.jpg"
+                                    alt="Medieval Art and The Cloisters"
+                                    class="img-fluid h-100 w-100 object-fit-cover"></a>
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ url_for('medieval_art_and_the_cloisters') }}" class="mb-2">
+                                <h4 class="card-title">Medieval Art and The Cloisters</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Include Footer -->
+    {% include 'footer.html' %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+/* Enhanced Card Styling */
+.card {
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, 0.05) 100%);
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+.card:hover::before {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, 0.08) 100%);
+}
+
+/* Card Image Container */
+.card-img-top {
+    height: 225px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img-top img {
+    transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card:hover .card-img-top img {
+    transform: scale(1.05);
+}
+
+/* Card Body */
+.card-body {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+    transition: color 0.3s ease;
+    margin-bottom: 0.75rem;
+    position: relative;
+    display: inline-block;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s ease;
+}
+
+.card:hover .card-title::after {
+    width: 100%;
+}
+
+.card-title a:hover {
+    color: #3498db;
+}
+
+/* Info Badges */
+.d-flex.align-items-center.gap-1 {
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover .d-flex.align-items-center.gap-1 {
+    background-color: rgba(52, 152, 219, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Section Styling */
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero-image {
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-image img {
+    transition: transform 10s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.05);
+}
+
+.hero-caption {
+    background-color: rgb(93 94 95 / 53%);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hero-caption h1 {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.hero-caption p {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Improved Read More/Less Functionality */
+.text-content {
+    display: inline;
+}
+
+.full-content {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.expanded .full-content {
+    display: inline;
+    opacity: 1;
+    max-height: 200px;
+    /* Adjust based on your content */
+}
+
+/* Read More/Less Styles */
+.description-text {
+    position: relative;
+}
+
+.short-text {
+    display: inline;
+}
+
+.full-text {
+    display: none;
+}
+
+.read-more-link {
+    color: #3498db;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-left: 4px;
+}
+
+.read-more-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Remove any conflicting CSS rules, especially these: */
+.read-more-link::after,
+.expanded .read-more-link::after {
+    content: '' !important;
+}
+
+/* Expanded state */
+.description-text.expanded .short-text {
+    display: none;
+}
+
+.description-text.expanded .full-text {
+    display: inline;
+}
+
+.read-more-link::after {
+    content: ' more';
+}
+
+.expanded .read-more-link::after {
+    content: ' less';
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

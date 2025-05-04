@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Museum Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css" />
+</head>
+
+<body>
+    <!-- Include Navbar -->
+    {% include 'navbar.html' %}
+
+    <section class="position-relative">
+        <div class="hero-image position-relative" style="height: 500px;">
+            <img src="/static/images/about/about_us.jpg" alt="Museum exhibition"
+                class="w-100 h-100 object-fit-cover opacity-85">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        </div>
+        <div class="container position-absolute top-50 start-50 translate-middle w-100">
+            <div class="hero-caption text-center p-4 text-white mx-auto" style="max-width: 800px;">
+                <h1 class="display-4 fw-bold">Welcome to Our Museum</h1>
+                <p class="lead mb-4">Discover amazing artifacts and exhibitions from around the world.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="my-5">
+        <div class="container marketing">
+
+            <div class="row featurette align-items-center my-5">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1 mb-4">The National Heritage Museum. <span
+                            class="text-body-secondary">Since
+                            1908.</span></h2>
+                    <p class="lead">Established in 1908, the National Heritage Museum is more than a museum—it is a
+                        living chronicle of human achievement, artistic brilliance, and scientific discovery. As the
+                        first institution of its kind in the region, we pioneered the preservation of cultural treasures
+                        and set the standard for museums worldwide.</p>
+                    <p class="lead">Our halls have witnessed revolutions—both in art and thought. From the earliest
+                        archaeological
+                        finds to groundbreaking contemporary exhibitions, the National Heritage Museum has been a
+                        catalyst for curiosity, inspiring scholars, artists, and visitors for over two centuries.</p>
+                </div>
+                <div class="col-md-5 p-0">
+                    <div class="bg-light overflow-hidden" style="width: 100%; max-width: 526px; height: 400px;">
+                        <img src="/static/images/about/history_museum.jpg" alt="The National Heritage Museum"
+                            class="img-fluid w-100 h-100" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette align-items-center my-5">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading fw-normal lh-1 mb-4">Events & Workshops at The National Heritage
+                        Museum
+                    </h2>
+                    <p class="lead">At the National Heritage Museum, we believe that history should be experienced, not
+                        just observed. Our dynamic lineup of events, workshops, and interactive programs invites
+                        visitors of all ages to engage with culture, art, and science in unforgettable ways.</p>
+                    <p class="mt-4">
+                        <a class="custom-btn" href="{{ url_for('exhibition') }}">Events and Exhibitions</a>
+                    </p>
+                </div>
+                <div class="col-md-5 p-0">
+                    <div class="bg-light overflow-hidden" style="width: 100%; max-width: 526px; height: 400px;">
+                        <img src="/static/images/about/exhibitions.jpg" alt="Exhibition and Events"
+                            class="img-fluid w-100 h-100" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette align-items-center my-5">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1 mb-4"> <span class="text-body-secondary">Treasures of
+                            Time:</span> The Artifacts of The National Heritage Museum </h2>
+                    <p class="lead">The National Heritage Museum safeguards one of the world's most remarkable
+                        collections, with over 100,000 artifacts spanning 5,000 years of human civilization. Each piece
+                        in our care is not merely an object, but a living bridge between past and present.</p>
+                    <p class="mt-4">
+                        <a class="custom-btn" href="{{ url_for('artifacts') }}">Discover Our Collections</a>
+                    </p>
+                </div>
+                <div class="col-md-5 p-0">
+                    <div class="bg-light overflow-hidden" style="width: 100%; max-width: 526px; height: 400px;">
+                        <img src="/static/images/about/artifact.jpg" alt="Artifacts" class="img-fluid w-100 h-100"
+                            style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+        </div>
+    </section>
+
+    <section class="position-relative">
+        <div class="position-absolute w-100 h-100 bg-dark" style="z-index: -1;">
+            <img src="/static/images/about/virtual_tour.jpg" alt="Museum Exhibit"
+                class="w-100 h-100 object-fit-cover opacity-75">
+        </div>
+
+        <div class="container py-5 my-5 text-center text-white">
+            <div class="col-lg-8 mx-auto py-5">
+                <h1 class="display-3 fw-bold mb-4">Discover Timeless Artifacts</h1>
+                <p class="lead mb-5">Journey through centuries of human history with our unparalleled collection</p>
+
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <a href="https://artsandculture.google.com/streetview/csmvs-entrance/owFFO8EDWSr9lQ?sv_lng=72.8325344218485&sv_lat=18.926786279180302&sv_h=17.06865260929841&sv_p=10.848124403218918&sv_pid=Hxvkdghw75bz-PAZJD1fIg&sv_z=1"
+                        class="btn-virtual-tour btn-lg px-4 gap-3" target="_blank">
+                        Virtual Tour
+                        <i class="bi bi-compass-fill ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Include Footer -->
+    {% include 'footer.html' %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

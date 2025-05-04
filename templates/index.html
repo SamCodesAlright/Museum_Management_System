@@ -1,0 +1,268 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="now-on-view">
+    <div class="section-header">
+        <h2 class="section-title" style="margin-left: 85px;">Exhibitions and Events</h2>
+        <a href="#" class="view-all mx-5">View All <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="carousel-container">
+        <button class="carousel-arrow prev">❮</button>
+        <div class="carousel-track">
+            <!-- Slide 1 -->
+            <div class="carousel-slide" style="margin-left: 75px;">
+                <a href="art_of_native_america">
+                    <img src="/static/images/exhibition/art_of_native_america.jpg" alt="Art of Native America"
+                        class="carousel-image">
+                    <div class="img-caption">
+                        <h3>Art of Native America: The Charles and Valerie Diker Collection</h3>
+                        <p>Through December 10, 2025</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+                <a href="/colorful_korea">
+                    <img src="/static/images/exhibition/colorful_korea.jpg" alt="Colorful Korea" class="carousel-image">
+                    <div class="img-caption">
+                        <h3>Colorful Korea: The Lea R. Sneider Collection</h3>
+                        <p>Through February 15, 2026</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <a href="/recasting_the_past">
+                    <img src="/static/images/exhibition/recasting_the_past.jpg" alt="Recasting The Past"
+                        class="carousel-image">
+                    <div class="img-caption">
+                        <h3>Recasting The Past: The Art of Chinese Bronzes, 1100-1900</h3>
+                        <p>Through December 10, 2025</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide">
+                <a href="/embracing_color">
+                    <img src="/static/images/exhibition/embracing_color.jpg" alt="Embracing Color"
+                        class="carousel-image">
+                    <div class="img-caption">
+                        <h3>Embracing Color: Enamel in Chinese Decorative Arts, 1300–1900</h3>
+                        <p>Through December 4, 2025</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide">
+                <a href="#">
+                    <img src="/static/images/exhibition_events/TheJoustingArmor.png" alt="Exhibition"
+                        class="carousel-image">
+                    <div class="img-caption">
+                        <h3>European Paintings</h3>
+                        <p>Highlights from the Collection</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <button class="carousel-arrow next">❯</button>
+
+        <div class="carousel-nav">
+            <div class="carousel-dots">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery" class="mt-4">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Location and Hours</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card location-card">
+                    <img src="/static/images/location1.jpg" alt="">
+                    <div class="card-body">
+                        <a>
+                            <h2 class="card-title">Mira Road Park</h2>
+                        </a>
+                        <p class="mt-2">Over 5,000 years of art from around the world.</p>
+                        <p><strong>Hours:</strong> Sunday–Tuesday and Thursday: 10 am–5 pm</p>
+                        <p><strong>Extended Hours:</strong> Friday and Saturday: 10 am–9 pm</p>
+                        <p><strong>Closed:</strong> Wednesday</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card location-card">
+                    <img src="/static/images/location2.jpg" alt="">
+                    <div class="card-body">
+                        <a>
+                            <h2 class="card-title">The Great Worli</h2>
+                        </a>
+                        <p class="mt-2">Art, architecture, and gardens of medieval Europe.</p>
+                        <p><strong>Hours:</strong> Thursday–Tuesday: 10 am–5 pm</p>
+                        <p><strong>Closed:</strong> Wednesday</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="more-to-explore" class="mt-5">
+    <div class="container">
+        <div class="section-header d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title">More to Explore</h2>
+            <div class="explore-carousel-nav">
+                <button class="btn btn-carousel-prev" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="btn btn-carousel-next" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="more-to-explore-carousel">
+            <div class="explore-carousel-container">
+                <div class="explore-carousel-track">
+                    <!-- Item 1 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/audio_guide.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Audio Guide</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/collection_areas.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Collection</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/families.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Families</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/group_tours.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Guide Tours</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/perspective.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Perspective</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/research.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Research</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="carousel-item">
+                        <div class="card position-relative border-0"> <!-- Added positioning context -->
+                            <div class="view overlay">
+                                <img class="more-to-explore-imgs w-100 d-block"
+                                    src="/static/images/more_to_explore/travel.jpg" alt="Audio Guide">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Text overlay positioned absolutely -->
+                            <div class="position-absolute bottom-0 start-0 p-3 w-100 text-white">
+                                <h5 class="card-title mb-0 fw-bold fs-3">Travel</h5>
+                                <!-- White text with bold weight -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

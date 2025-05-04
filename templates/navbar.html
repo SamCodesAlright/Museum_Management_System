@@ -1,0 +1,57 @@
+<div>
+  <!-- Utility Bar -->
+  <div class="bg-dark py-1">
+    <div class="container d-flex justify-content-end">
+      <div class="d-flex">
+        <a href="/login" class="text-white text-decoration-none px-3 py-1 small">
+          <i class="bi bi-person-fill me-1"></i> User Login
+        </a>
+        <a href="/adminLogin" class="text-white text-decoration-none px-3 py-1 small">
+          <i class="bi bi-person-fill-gear me-1"></i> Admin Login
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-black custom-navbar">
+    <div class="container">
+      <a class="navbar-brand p-0 me-2" href="/">
+        <img src="/static/images/site_logo.png" alt="The National Heritage Museum" class="d-inline-block align-top"
+          style="height: 110px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link custom-link fw-bold" href="/visit">Visit</a>
+          </li>
+          <li class="nav-item dropdown dropdown-hover position-relative">
+            <a class="nav-link custom-link fw-bold dropdown-toggle" href="/exhibitionsandevents"
+              id="exhibitionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Exhibitions & Events
+              <i class="bi bi-chevron-down dropdown-arrow ms-1 transition-all"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end bg-black mt-0 border-0 py-0 position-absolute end-0">
+              <li><a class="dropdown-item text-white py-3 px-3 transition-all fw-bold" href="/exhibition">Current
+                  Exhibitions</a></li>
+              <li>
+                <hr class="dropdown-divider bg-secondary my-1 mx-3">
+              </li>
+              <li><a class="dropdown-item text-white py-3 px-3 transition-all fw-bold" href="/events">Upcoming
+                  Events</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-link fw-bold" href="/artifacts">Artifacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-link fw-bold" href="/about">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
